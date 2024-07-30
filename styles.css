@@ -1,0 +1,193 @@
+/* Background Pixel Image */
+body {
+  font-family: 'Press Start 2P', cursive; /* Font retro gaming */
+  text-align: center;
+  background: rgb(4,4,140);
+  background: linear-gradient(90deg, rgba(4,4,140,1) 5%, rgba(2,0,36,1) 77%, rgba(41,95,106,1) 100%);
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  
+}
+h1{
+  color: #fff;
+}
+/* General Button Styles */
+button {
+  padding: 15px 30px;
+  margin: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(145deg, #333, #555);
+  color: #fff;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+button:active {
+  background: linear-gradient(145deg, #555, #333);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(2px);
+}
+
+/* Stick Button Layout */
+.controller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.stick {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  gap: 10px;
+}
+
+.stick button {
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff0055, #ff3333);
+  color: white;
+  border: 2px solid #ff0055;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+}
+
+.stick button:active {
+  background: radial-gradient(circle, #ff3333, #ff0055);
+  box-shadow: 0 2px 5px rgba(255, 0, 0, 0.5);
+  transform: translateY(2px);
+}
+
+/* Servo Control Buttons Layout */
+.servo-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px; /* Changed from top to bottom */
+  margin-top: 0; /* Removed margin-top to keep it at the bottom */
+}
+
+.servo-controls .servo-row {
+  display: flex;
+  gap: 10px;
+}
+
+.servo-controls button {
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0055ff, #3333ff);
+  color: white;
+  border: 2px solid #0055ff;
+  box-shadow: 0 5px 15px rgba(0, 0, 255, 0.5);
+}
+
+.servo-controls button:active {
+  background: radial-gradient(circle, #3333ff, #0055ff);
+  box-shadow: 0 2px 5px rgba(0, 0, 255, 0.5);
+  transform: translateY(2px);
+}
+
+/* UUID List Styles */
+#uuidList {
+  margin-top: 20px;
+  color: #fff;
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
+  .stick {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5px; /* Adjust for better fit */
+  }
+
+  .control-controls {
+    position: fixed;
+    top: 0; /* Moved to top */
+    left: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    display: flex; /* Changed to flex */
+    flex-wrap: wrap; /* Allow wrapping of buttons */
+    gap: 5px; /* Adjust for better fit */
+  }
+
+  .servo-controls {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5px; /* Adjust for better fit */
+  }
+
+  .servo-controls button {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .control-controls button {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  #uuidList {
+    margin-top: 10px; /* Adjust for mobile */
+  }
+}
+
+/* Control Controls Layout */
+.control-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  margin-top: 209px;
+}
+
+.control-controls .servo-row {
+  display: grid;
+  gap: 10px;
+}
+
+.control-controls button {
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0055ff, #3333ff);
+  color: white;
+  border: 2px solid #0055ff;
+  box-shadow: 0 5px 15px rgba(0, 0, 255, 0.5);
+}
+
+.control-controls button:active {
+  background: radial-gradient(circle, #3333ff, #0055ff);
+  box-shadow: 0 2px 5px rgba(0, 0, 255, 0.5);
+  transform: translateY(2px);
+}
