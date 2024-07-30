@@ -5,16 +5,20 @@ let bluetoothCharacteristic;
 const clickSound = document.getElementById('clickSound');
 
 function playClickSound() {
-  clickSound.currentTime = 0; // Reset waktu pemutaran ke awal
-  clickSound.play();
+  if (clickSound) {
+    clickSound.currentTime = 0; // Reset waktu pemutaran ke awal
+    clickSound.play();
+  }
 }
 
 function triggerButtonEffect(button) {
-  playClickSound();
-  button.classList.add('clicked');
-  setTimeout(() => {
-    button.classList.remove('clicked');
-  }, 200); // Durasi animasi shake di CSS
+  if (button) {
+    playClickSound();
+    button.classList.add('clicked');
+    setTimeout(() => {
+      button.classList.remove('clicked');
+    }, 200); // Durasi animasi shake di CSS
+  }
 }
 
 async function connectBluetooth() {
@@ -22,7 +26,7 @@ async function connectBluetooth() {
   triggerButtonEffect(button);
   try {
     bluetoothDevice = await navigator.bluetooth.requestDevice({
-      acceptAllDevices: true,
+      acceptAllDevices: true, // Jika Anda tahu UUID, Anda bisa menggunakan 'filters' untuk lebih spesifik
       optionalServices: ['battery_service']
     });
 
@@ -38,7 +42,9 @@ async function connectBluetooth() {
       }
     }
     
-    bluetoothCharacteristic = await services[0].getCharacteristic('your-characteristic-uuid');
+    // Ganti 'your-characteristic-uuid' dengan UUID karakteristik yang relevan
+    const characteristicUuid = 'your-characteristic-uuid'; 
+    bluetoothCharacteristic = await services[0].getCharacteristic(characteristicUuid);
   } catch (error) {
     console.error('Error connecting to Bluetooth device:', error);
   }
@@ -54,19 +60,20 @@ async function readUUIDs() {
 
   try {
     const services = await bluetoothServer.getPrimaryServices();
-    let uuidList = document.getElementById('uuidList');
-    uuidList.innerHTML = '<h2>Service UUIDs:</h2>';
-    
-    for (const service of services) {
-      uuidList.innerHTML += `<p>Service UUID: ${service.uuid}</p>`;
-      const characteristics = await service.getCharacteristics();
-      uuidList.innerHTML += '<h3>Characteristics:</h3>';
+    const uuidList = document.getElementById('uuidList');
+    if (uuidList) {
+      uuidList.innerHTML = '<h2>Service UUIDs:</h2>';
       
-      for (const characteristic of characteristics) {
-        uuidList.innerHTML += `<p>Characteristic UUID: ${characteristic.uuid}</p>`;
+      for (const service of services) {
+        uuidList.innerHTML += `<p>Service UUID: ${service.uuid}</p>`;
+        const characteristics = await service.getCharacteristics();
+        uuidList.innerHTML += '<h3>Characteristics:</h3>';
+        
+        for (const characteristic of characteristics) {
+          uuidList.innerHTML += `<p>Characteristic UUID: ${characteristic.uuid}</p>`;
+        }
       }
     }
-
     console.log('UUIDs read successfully.');
   } catch (error) {
     console.error('Error reading UUIDs:', error);
